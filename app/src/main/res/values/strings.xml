@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">JustNews</string>
+    <string name="title_example">Тиллерсон заявил Трампу о готовности занять пост госсекретаря США</string>
+    <string name="description_example">Глава нефтяной компании ExxonMobil Рекс Тиллерсон заявил избранному президенту США Дональду Трампу, что с гордостью занял бы пост госсекретаря, сообщает телеканал CNN со ссылкой на источники, близкие к Тиллерсону.</string>
+    <string name="what_is_it">Британские ученые доказали - в среднем достаточно знать 3.41 новости в день, чтобы быть в курсе происходящих в мире событий.</string>
+    <string name="what_is_it_contin"></string>
 </resources>

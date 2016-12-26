@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#e6e6e6</color>
+    <color name="colorPrimaryDark">#343434</color>
+    <color name="colorAccent">#003e8f</color>
+
+    <color name="colorDivider">#464646</color>
+
+    <color name="colorWidgetBackground">#dcffffff</color>
+    <color name="colorWidgetDateSource">#b3ffffff</color>
+    <color name="colorWidgetText">#191919</color>
+    <color name="colorWidgetCode">#484848</color>
+    <color name="colorWidgetBottomText">#333333</color>
+    <color name="colorBackgroundWidgetActivity">#96ffffff</color>
+    <color name="colorMainActivity">#bababa</color>
+
+    <color name="colorDefaultTag">@color/colorAccent</color>
 </resources>
