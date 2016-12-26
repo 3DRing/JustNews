@@ -13,17 +13,22 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="16dp">
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:layout_gravity="center">
 
             <fragment
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:name="com.ringov.justnews.MyFragment"
+                android:name="com.ringov.justnews.WidgetFragment"
                 android:id="@+id/widget_fragment"
                 android:layout_weight="2"
                 tools:layout="@layout/widget" />
@@ -35,7 +40,7 @@
                 android:layout_weight="2">
 
                 <Button
-                    android:text="Добавить виджет на рабочий стол"
+                    android:text="@string/add_widget_btn_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnAddWidget"
@@ -52,7 +57,7 @@
                     ></View>
 
                 <TextView
-                    android:text="Что это?"
+                    android:text="@string/what_is_it_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvTitleExplanation"
@@ -62,39 +67,25 @@
                     android:textColor="@color/colorAccent" />
 
                 <TextView
-                    android:text="@string/what_is_it"
+                    android:text="@string/what_is_it_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvWhatIs"
                     android:textSize="18sp"
                     android:layout_marginTop="16dp"
-                    android:textAlignment="center"
-                    android:layout_marginBottom="8dp" />
+                    android:textAlignment="textStart"
+                    android:layout_marginBottom="8dp"
+                    android:textAllCaps="false" />
 
                 <TextView
-                    android:text="Утренний кофе, обеденный перерыв, после работы и перед сном - всего четыре новости будут держать вас в курсе!"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView4"
-                    android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="16dp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorDivider"
+                    android:id="@+id/tvWhatIsItMore"
+                    android:textAlignment="textStart"
+                    android:textSize="12sp"
                     android:layout_marginBottom="16dp"
-                    ></View>
-
-                <Switch
-                    android:text="Включить/выключить новостную палитру"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="16dp"
-                    android:id="@+id/switcher"
-                    android:layout_marginBottom="32dp" />
+                    android:text="@string/what_is_it_text_more"
+                    android:layout_marginTop="16dp" />
 
             </LinearLayout>
         </LinearLayout>

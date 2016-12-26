@@ -1,7 +1,13 @@
 <resources>
-    <string name="app_name">JustNews</string>
-    <string name="title_example">Тиллерсон заявил Трампу о готовности занять пост госсекретаря США</string>
-    <string name="description_example">Глава нефтяной компании ExxonMobil Рекс Тиллерсон заявил избранному президенту США Дональду Трампу, что с гордостью занял бы пост госсекретаря, сообщает телеканал CNN со ссылкой на источники, близкие к Тиллерсону.</string>
-    <string name="what_is_it">Британские ученые доказали - в среднем достаточно знать 3.41 новости в день, чтобы быть в курсе происходящих в мире событий.</string>
-    <string name="what_is_it_contin"></string>
+    <string name="app_name">Just News</string>
+    <string name="title_example">Заложен фундамент самого высокого монумента в мире</string>
+    <string name="description_example">Премьер-министр Индии Нарендра Моди посетил штат Махараштра и заложил фундамент гигантской статуи Шиваджи. Памятник планируют построить на искусственном острове в четырех километрах от Мумбаи. Ожидается, что строительство обойдется в 36 миллиардов рупий (около 530 миллионов долларов).</string>
+    <string name="date_example">Сегодня, в 13.39</string>
+    <string name="source_text">Источник: </string>
+    <string name="source_example">Lenta.ru</string>
+
+    <string name="add_widget_btn_text">Добавить виджет на рабочий стол</string>
+    <string name="what_is_it_title">Просто новости :)</string>
+    <string name="what_is_it_text">Всего несколько емких предложений прямо на рабочем столе Вашего телефона - и Вы всегда в курсе самых последних новостей!</string>
+    <string name="what_is_it_text_more">Новость в виджете обновляется каждый час.\n\nНажатие на назание источника откроет ссылку на оригинал новости.</string>
 </resources>
