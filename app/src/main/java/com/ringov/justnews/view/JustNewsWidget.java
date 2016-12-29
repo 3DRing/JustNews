@@ -1,4 +1,4 @@
-package com.ringov.justnews;
+package com.ringov.justnews.view;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
