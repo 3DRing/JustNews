@@ -71,7 +71,7 @@ public class Service implements InternetService {
 
                 try{
                     JSONObject json = getJson(response);
-                    callback.onResponseSuccess(json);
+                    callback.onResponseSuccess(json,SOURCE.YANDEX);
                 } catch (JSONException e) {
                     callback.onParseFailure(e);
                 } catch (IOException ioe){

@@ -1,5 +1,6 @@
 package com.ringov.justnews.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,6 +22,17 @@ public class News implements NewsData{
 
     public News(){
         nil = true;
+    }
+
+    public News(int id, Date date, String title, String text, String source, String url){
+        this.id = id;
+        this.date = date;
+        this.title = title;
+        this.text = text;
+        this.source = source;
+        this.url = url;
+
+        this.nil = false;
     }
 
     public boolean isNull(){
@@ -50,5 +62,28 @@ public class News implements NewsData{
     @Override
     public String getUrl() {
         return url;
+    }
+
+
+    /**
+     * Format as follows: dd.mm.yy, HH.mm
+     *
+     * @return
+     */
+    @Override
+    public String getFormattedDate() {
+        Date today = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+        String resultString;
+        if(sdf.format(today).equals(sdf.format(date))){
+            sdf = new SimpleDateFormat("HH.mm");
+            resultString = "Сегодня, в " + sdf.format(date);
+        }else{
+            sdf = new SimpleDateFormat("dd.mm.yy, HH.mm");
+            resultString = sdf.format(date);
+        }
+
+        return resultString;
     }
 }

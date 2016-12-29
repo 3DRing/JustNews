@@ -7,7 +7,7 @@ import org.json.JSONObject;
  * Created by Сергей on 29.12.2016.
  */
 public interface ClientCallback {
-    void onResponseSuccess(JSONObject json) throws JSONException;
+    void onResponseSuccess(JSONObject json, SOURCE source) throws JSONException;
     void onResponseFailure(Throwable t);
     void onParseFailure(JSONException e);
 }

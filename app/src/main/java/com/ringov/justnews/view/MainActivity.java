@@ -10,7 +10,6 @@ import com.ringov.justnews.R;
 import com.ringov.justnews.model.NewsData;
 import com.ringov.justnews.presenter.NewsPresenter;
 import com.ringov.justnews.presenter.PresenterInView;
-import com.ringov.justnews.view.interfaces.BaseView;
 import com.ringov.justnews.view.interfaces.SingleNewsView;
 
 public class MainActivity extends AppCompatActivity implements SingleNewsView {
@@ -19,12 +18,15 @@ public class MainActivity extends AppCompatActivity implements SingleNewsView {
 
     private Button btnAddWidget;
 
+    private NewsShowcase showcase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         presenter = new NewsPresenter(this);
+        showcase = new NewsShowcase(this);
 
         this.btnAddWidget = (Button) findViewById(R.id.btnAddWidget);
         this.btnAddWidget.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +54,6 @@ public class MainActivity extends AppCompatActivity implements SingleNewsView {
 
     @Override
     public void showNews(NewsData data) {
-
+        showcase.showNews(data);
     }
 }

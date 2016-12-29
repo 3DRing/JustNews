@@ -2,6 +2,7 @@ package com.ringov.justnews.model;
 
 import com.ringov.justnews.internet.ClientCallback;
 import com.ringov.justnews.internet.InternetService;
+import com.ringov.justnews.internet.SOURCE;
 import com.ringov.justnews.internet.Service;
 import com.ringov.justnews.presenter.PresenterInModel;
 
@@ -20,12 +21,14 @@ public class Model implements NewsModel {
     private InternetService service;
     private PresenterInModel<NewsData> presenter;
 
+    private Parser<News,SOURCE> parser;
     private List<News> news;
 
     public Model(PresenterInModel<NewsData> presenter) {
         this.presenter = presenter;
         this.service = Service.getInstance();
 
+        this.parser = new NewsParser();
         this.news = new LinkedList<>();
     }
 
@@ -36,9 +39,9 @@ public class Model implements NewsModel {
     private void getNewsFromInternet() {
         this.service.getData(new ClientCallback() {
             @Override
-            public void onResponseSuccess(JSONObject json) throws JSONException {
+            public void onResponseSuccess(JSONObject json, SOURCE source) throws JSONException {
                 try {
-                    news = parseNews(json);
+                    news = parser.parse(json, source);
                 } catch (NewsParseException e) {
                     presenter.newsParsingFailed(e.getMessage());
                 }
@@ -55,13 +58,6 @@ public class Model implements NewsModel {
                 presenter.jsonParsingFailed(e.getMessage());
             }
         });
-    }
-
-    private List<News> parseNews(JSONObject json) throws NewsParseException {
-
-        // TODO news parsing
-
-        return null;
     }
 
     private NewsData getNextNewsFromRAM() {

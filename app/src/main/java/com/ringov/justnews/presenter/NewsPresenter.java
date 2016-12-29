@@ -15,7 +15,7 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
 
     public NewsPresenter(SingleNewsView view) {
         super(view);
-        this.model = ModelManager.getTestNewsModel(this);
+        this.model = ModelManager.getNewsModel(this);
 
         loading = false;
     }
@@ -42,27 +42,31 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
 
     @Override
     public void response(NewsData data) {
+        setLoading(false);
         this.view.showNews(data);
     }
 
     @Override
     public void responseHistory(List<NewsData> data) {
-
+        setLoading(false);
     }
 
     @Override
     public void newsParsingFailed(String message) {
+        setLoading(false);
         view.showMessage(message);
     }
 
     @Override
     public void responseFailed(String message) {
+        setLoading(false);
         view.showMessage(message);
     }
 
     @Override
     public void jsonParsingFailed(String message) {
-
+        setLoading(false);
+        view.showMessage(message);
     }
 
     @Override
@@ -78,6 +82,7 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
 
     @Override
     public void requestHistory() {
+        setLoading(true);
         this.model.requestHistory();
     }
 }

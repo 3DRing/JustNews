@@ -7,7 +7,7 @@ import com.ringov.justnews.presenter.PresenterInModel;
  */
 
 public class ModelManager {
-    public static NewsModel getTestNewsModel(PresenterInModel presenter){
+    public static NewsModel getNewsModel(PresenterInModel presenter){
         return new Model(presenter);
     }
 }

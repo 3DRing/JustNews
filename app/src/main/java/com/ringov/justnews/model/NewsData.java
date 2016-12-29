@@ -13,4 +13,5 @@ public interface NewsData {
     String getText();
     String getSource();
     String getUrl();
+    String getFormattedDate();
 }
