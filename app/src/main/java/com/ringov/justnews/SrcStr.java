@@ -5,5 +5,5 @@ package com.ringov.justnews;
  */
 
 public class SrcStr {
-    public static final String BASE_URL = "https://news.yandex.ru/";
+    public static final String YANDEX_URL = "https://news.yandex.ru/";
 }

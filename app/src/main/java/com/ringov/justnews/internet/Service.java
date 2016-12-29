@@ -1,6 +1,8 @@
 package com.ringov.justnews.internet;
 
 import com.ringov.justnews.SrcStr;
+import com.ringov.justnews.internet.retrofit.RSSClient;
+import com.ringov.justnews.internet.retrofit.YandexClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,7 +14,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 /**
  * Created by Сергей on 29.12.2016.
@@ -31,28 +32,20 @@ public class Service implements DataGetter {
         }
     }
 
-    private RetrofitClient client;
-    private final String BASE_URL;
+    private RSSClient client;
 
     private boolean canceled;
 
     private Service() {
-        BASE_URL = SrcStr.BASE_URL;
-        String baseUrl = BASE_URL;
 
-        client = new Retrofit.Builder()
-                //.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                //.addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(baseUrl)
-                .build()
-                .create(RetrofitClient.class);
+        client = new YandexClient();
 
         canceled = false;
     }
 
     @Override
     public void getData(ClientCallback callback) {
-        Call<ResponseBody> result = client.getTestRss();
+        Call<ResponseBody> result = client.getRSS();
         executeCallback(result,callback);
     }
 
@@ -84,6 +77,8 @@ public class Service implements DataGetter {
                     callback.onParseFailure(e);
                 } catch (IOException ioe){
                     callback.onResponseFailure(ioe);
+                } catch (Exception exception){
+                    callback.onResponseFailure(exception);
                 }
             }
 
