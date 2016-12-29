@@ -1,6 +1,5 @@
 package com.ringov.justnews.internet;
 
-import com.ringov.justnews.SrcStr;
 import com.ringov.justnews.internet.retrofit.RSSClient;
 import com.ringov.justnews.internet.retrofit.YandexClient;
 
@@ -19,7 +18,7 @@ import retrofit2.Response;
  * Created by Сергей on 29.12.2016.
  */
 
-public class Service implements DataGetter {
+public class Service implements InternetService {
 
     private static Service instance;
 

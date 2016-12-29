@@ -1,7 +1,7 @@
 package com.ringov.justnews.model;
 
 import com.ringov.justnews.internet.ClientCallback;
-import com.ringov.justnews.internet.DataGetter;
+import com.ringov.justnews.internet.InternetService;
 import com.ringov.justnews.internet.Service;
 import com.ringov.justnews.presenter.PresenterInModel;
 
@@ -15,16 +15,16 @@ import java.util.List;
  * Created by Сергей on 26.12.2016.
  */
 
-public class TestNewsModel implements NewsModel {
+public class Model implements NewsModel {
 
-    private DataGetter getter;
+    private InternetService service;
     private PresenterInModel<NewsData> presenter;
 
     private List<News> news;
 
-    public TestNewsModel(PresenterInModel<NewsData> presenter) {
+    public Model(PresenterInModel<NewsData> presenter) {
         this.presenter = presenter;
-        this.getter = Service.getInstance();
+        this.service = Service.getInstance();
 
         this.news = new LinkedList<>();
     }
@@ -34,7 +34,7 @@ public class TestNewsModel implements NewsModel {
     }
 
     private void getNewsFromInternet() {
-        this.getter.getData(new ClientCallback() {
+        this.service.getData(new ClientCallback() {
             @Override
             public void onResponseSuccess(JSONObject json) throws JSONException {
                 try {
