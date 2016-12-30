@@ -31,7 +31,6 @@ public class JustNewsWidget extends AppWidgetProvider implements SingleNewsView,
 
     private PresenterInView presenter;
     private Context context;
-    private NewsData crtNews;
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -40,7 +39,7 @@ public class JustNewsWidget extends AppWidgetProvider implements SingleNewsView,
         RemoteViews remoteViews;
         ComponentName newsWidget;
 
-        remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+        remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_dark);
         newsWidget = new ComponentName(context, JustNewsWidget.class);
 
         remoteViews.setOnClickPendingIntent(R.id.llNextNewsClickLayout, getPendingSelfIntent(context, GET_NEWS));
@@ -96,14 +95,13 @@ public class JustNewsWidget extends AppWidgetProvider implements SingleNewsView,
         RemoteViews remoteViews;
         ComponentName newsWidget;
 
-        remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+        remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_dark);
         newsWidget = new ComponentName(context, JustNewsWidget.class);
 
         remoteViews.setTextViewText(R.id.tvTitle, data.getTitle());
         remoteViews.setTextViewText(R.id.tvDescription, data.getText());
         remoteViews.setTextViewText(R.id.tvDate, data.getFormattedDate());
         remoteViews.setTextViewText(R.id.tvSource, data.getSource());
-        // TODO open url on source click
 
         appWidgetManager.updateAppWidget(newsWidget, remoteViews);
     }

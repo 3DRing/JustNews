@@ -42,7 +42,7 @@
                         android:layout_weight="1"
                         android:text="@string/title_example"
                         android:textAllCaps="false"
-                        android:textColor="@color/colorDefaultTag"
+                        android:textColor="@color/colorLightTitle"
                         android:textSize="12sp"
                         android:textStyle="normal|bold"
                         android:layout_gravity="center" />
@@ -60,7 +60,7 @@
                     android:layout_weight="1"
                     android:scrollbars="vertical"
                     android:text="@string/description_example"
-                    android:textColor="@color/colorWidgetText"
+                    android:textColor="@color/colorLightWidgetText"
                     android:textSize="10sp" />
             </LinearLayout>
 
@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvDate"
                     android:textSize="10sp"
-                    android:textColor="@color/colorWidgetBottomText"
+                    android:textColor="@color/colorLightWidgetText"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:gravity="center" />
@@ -124,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvSourceTitle"
                     android:textSize="10sp"
-                    android:textColor="@color/colorWidgetBottomText"
+                    android:textColor="@color/colorLightWidgetText"
                     android:layout_marginRight="4dp" />
 
                 <TextView
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvSource"
                     android:textSize="10sp"
-                    android:textColor="@color/colorWidgetBottomText" />
+                    android:textColor="@color/colorLightWidgetText" />
 
             </LinearLayout>
 
