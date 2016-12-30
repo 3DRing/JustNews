@@ -8,5 +8,5 @@ import com.ringov.justnews.model.NewsData;
 
 public interface SingleNewsView extends BaseView{
     void showNews(NewsData data);
-
+    void openUrl(String url);
 }

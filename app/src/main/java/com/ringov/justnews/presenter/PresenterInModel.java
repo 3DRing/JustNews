@@ -1,5 +1,7 @@
 package com.ringov.justnews.presenter;
 
+import android.content.Context;
+
 import com.ringov.justnews.model.News;
 import com.ringov.justnews.model.NewsData;
 
@@ -18,4 +20,6 @@ public interface PresenterInModel<DataType> {
     void responseFailed(String message);
 
     void jsonParsingFailed(String message);
+
+    Context getContext();
 }

@@ -25,7 +25,8 @@
                 android:background="@drawable/round_rect_background"
                 android:orientation="vertical"
                 android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp">
+                android:layout_marginRight="4dp"
+                android:id="@+id/llNextNewsClickLayout">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -114,7 +115,8 @@
                 android:layout_weight="2"
                 android:gravity="center"
                 android:background="@drawable/round_rect_date_source"
-                android:padding="2dp">
+                android:padding="2dp"
+                android:id="@+id/llUrlClickLayout">
 
                 <TextView
                     android:text="@string/source_text"

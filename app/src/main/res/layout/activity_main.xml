@@ -31,7 +31,7 @@
                 android:name="com.ringov.justnews.view.WidgetFragment"
                 android:id="@+id/widget_fragment"
                 android:layout_weight="2"
-                tools:layout="@layout/widget" />
+                tools:layout="@layout/widget_layout" />
 
             <LinearLayout
                 android:orientation="vertical"

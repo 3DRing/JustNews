@@ -8,4 +8,5 @@ public interface PresenterInView {
     void isBusy();
     void requestNext();
     void requestHistory();
+    void openCrtUrl();
 }

@@ -1,8 +1,11 @@
 package com.ringov.justnews.presenter;
 
+import android.content.Context;
+
 import com.ringov.justnews.model.ModelManager;
 import com.ringov.justnews.model.NewsData;
 import com.ringov.justnews.model.NewsModel;
+import com.ringov.justnews.view.interfaces.AndroidDependence;
 import com.ringov.justnews.view.interfaces.SingleNewsView;
 
 import java.util.List;
@@ -15,29 +18,15 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
 
     public NewsPresenter(SingleNewsView view) {
         super(view);
-        this.model = ModelManager.getNewsModel(this);
-
-        loading = false;
     }
 
-    private boolean loading;
+    public NewsPresenter(SingleNewsView view, AndroidDependence dependence){
+        super(view,dependence);
+    }
 
-    public void setLoading(boolean loading){
-        if(loading && this.loading){
-            // unexpected behaviour
-            throw new IllegalStateException("should not call for loading until previous is finished");
-        }
-        if(!loading && !this.loading){
-            throw new IllegalStateException("loading has not been called - nothing to hide");
-        }
-        if(loading && !this.loading){
-            this.loading = true;
-            view.showLoading("loading"); // TODO remove hardcoded text
-        }
-        if(!loading && this.loading){
-            this.loading = false;
-            view.hideLoading();
-        }
+    @Override
+    protected void initializeModel() {
+        this.model = ModelManager.getNewsModel(this);
     }
 
     @Override
@@ -70,6 +59,16 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
     }
 
     @Override
+    public Context getContext() {
+        Context context = dependence == null ? null : dependence.getContext();
+        if(context == null){
+            // define more unified way of dealing with exceptions
+            throw new IllegalStateException("context was not given");
+        }
+        return context;
+    }
+
+    @Override
     public void isBusy() {
 
     }
@@ -84,5 +83,13 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
     public void requestHistory() {
         setLoading(true);
         this.model.requestHistory();
+    }
+
+    @Override
+    public void openCrtUrl() {
+        String url = this.model.getCrtUrl();
+        if(!url.equals("")) {
+            view.openUrl(url);
+        }
     }
 }
