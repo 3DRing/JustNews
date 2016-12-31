@@ -9,4 +9,6 @@ public interface PresenterInView {
     void requestNext();
     void requestHistory();
     void openCrtUrl();
+
+    void clearDB();
 }

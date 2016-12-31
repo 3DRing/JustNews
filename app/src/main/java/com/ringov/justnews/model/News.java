@@ -1,5 +1,7 @@
 package com.ringov.justnews.model;
 
+import com.ringov.justnews.Utils;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -19,6 +21,7 @@ public class News implements NewsData{
     private String text;
     private String source;
     private String url;
+    private int hash;
 
     public News(){
         nil = true;
@@ -85,5 +88,14 @@ public class News implements NewsData{
         }
 
         return resultString;
+    }
+
+    public long getHash() {
+        int hash = 0;
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.valueOf(getUrl()));
+
+        return Utils.hash(sb.toString());
     }
 }

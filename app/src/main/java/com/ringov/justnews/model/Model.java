@@ -1,15 +1,11 @@
 package com.ringov.justnews.model;
 
-import android.content.Context;
-
 import com.ringov.justnews.db.DB;
 import com.ringov.justnews.db.DBManager;
-import com.ringov.justnews.db.Database;
 import com.ringov.justnews.internet.ClientCallback;
 import com.ringov.justnews.internet.InternetManager;
 import com.ringov.justnews.internet.InternetService;
 import com.ringov.justnews.internet.SOURCE;
-import com.ringov.justnews.internet.Service;
 import com.ringov.justnews.presenter.PresenterInModel;
 
 import org.json.JSONException;
@@ -34,14 +30,10 @@ public class Model implements NewsModel {
     public Model(PresenterInModel<NewsData> presenter) {
         this.presenter = presenter;
         this.service = InternetManager.getInternetService();
-        this.db = DBManager.getDB();
+        this.db = DBManager.getDB(presenter.getContext());
 
         this.parser = new NewsParser();
         this.news = new LinkedList<>();
-    }
-
-    private List<News> getNewsFromDB() {
-        return new LinkedList<>();
     }
 
     private void getNewsFromInternet() {
@@ -68,25 +60,29 @@ public class Model implements NewsModel {
         });
     }
 
-
-    /**
-     * Logic of choosing what source of news should be used
-     *
-     * @return
-     */
     private NewsData getNextNews(){
-        NewsData crtNews = getNextNewsFromRAM();
 
-        // TODO make it in more unified fashion
-        db.setCrtUrl(presenter.getContext(), crtNews.getUrl());
-
-        return crtNews;
+        return getNotRepeatedNews();
     }
 
-    private NewsData getNextNewsFromRAM() {
-        NewsData nextNews = news.get(0);
-        news.remove(0);
-        return nextNews;
+    private NewsData getNotRepeatedNews() {
+
+        News newsToGo = null;
+        while(news.size() > 0 && newsToGo == null){
+            if(db.containsNews(news.get(0))){
+                news.remove(0);
+            }else{
+                newsToGo = news.get(0);
+            }
+        }
+
+        if(newsToGo != null) {
+            db.addNews(newsToGo);
+            // TODO make it in more unified fashion
+            db.setCrtUrl(presenter.getContext(), newsToGo.getUrl());
+        }
+
+        return newsToGo;
     }
 
     @Override
@@ -108,5 +104,10 @@ public class Model implements NewsModel {
     @Override
     public String getCrtUrl() {
         return db.getCrtUrl(presenter.getContext());
+    }
+
+    @Override
+    public void clearDB() {
+        db.clear();
     }
 }

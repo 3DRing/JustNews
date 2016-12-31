@@ -10,4 +10,6 @@ public interface NewsModel extends BaseModel{
     void requestNext();
     void requestHistory();
     String getCrtUrl();
+
+    void clearDB();
 }

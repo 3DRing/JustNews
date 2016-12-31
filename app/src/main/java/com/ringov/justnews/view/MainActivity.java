@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements SingleNewsView, A
     private PresenterInView presenter;
 
     private Button btnAddWidget;
+    private LinearLayout btnOpenUrl;
+    private LinearLayout llNextNewsClickLayout;
 
     private NewsShowcase showcase;
 
@@ -36,6 +39,23 @@ public class MainActivity extends AppCompatActivity implements SingleNewsView, A
 
         this.btnAddWidget = (Button) findViewById(R.id.btnAddWidget);
         this.btnAddWidget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.clearDB();
+            }
+        });
+
+        btnOpenUrl = (LinearLayout) findViewById(R.id.llNextNewsClickLayout);
+        btnOpenUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.openCrtUrl();
+            }
+        });
+
+
+        llNextNewsClickLayout = (LinearLayout) findViewById(R.id.llNextNewsClickLayout);
+        llNextNewsClickLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.requestNext();

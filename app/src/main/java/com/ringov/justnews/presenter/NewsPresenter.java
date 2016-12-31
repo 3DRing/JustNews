@@ -32,7 +32,9 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
     @Override
     public void response(NewsData data) {
         setLoading(false);
-        this.view.showNews(data);
+        if(data != null){
+            this.view.showNews(data);
+        }
     }
 
     @Override
@@ -91,5 +93,10 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
         if(!url.equals("")) {
             view.openUrl(url);
         }
+    }
+
+    @Override
+    public void clearDB() {
+        model.clearDB();
     }
 }
