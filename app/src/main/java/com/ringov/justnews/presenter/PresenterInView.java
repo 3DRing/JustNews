@@ -5,7 +5,6 @@ package com.ringov.justnews.presenter;
  */
 
 public interface PresenterInView {
-    void isBusy();
     void requestNext();
     void requestHistory();
     void openCrtUrl();

@@ -34,6 +34,8 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
         setLoading(false);
         if(data != null){
             this.view.showNews(data);
+        }else{
+            this.view.showMessage("Нет новых новостей");
         }
     }
 
@@ -71,20 +73,19 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
     }
 
     @Override
-    public void isBusy() {
-
-    }
-
-    @Override
     public void requestNext() {
-        setLoading(true);
-        this.model.requestNext();
+        if(!this.model.isBusy()) {
+            setLoading(true);
+            this.model.requestNext();
+        }
     }
 
     @Override
     public void requestHistory() {
-        setLoading(true);
-        this.model.requestHistory();
+        if(!this.model.isBusy()) {
+            setLoading(true);
+            this.model.requestHistory();
+        }
     }
 
     @Override

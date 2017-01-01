@@ -27,6 +27,8 @@ public class Model implements NewsModel {
     private Parser<News,SOURCE> parser;
     private List<News> news;
 
+    private boolean busy;
+
     public Model(PresenterInModel<NewsData> presenter) {
         this.presenter = presenter;
         this.service = InternetManager.getInternetService();
@@ -34,6 +36,8 @@ public class Model implements NewsModel {
 
         this.parser = new NewsParser();
         this.news = new LinkedList<>();
+
+        busy = false;
     }
 
     private void getNewsFromInternet() {
@@ -46,16 +50,20 @@ public class Model implements NewsModel {
                     presenter.newsParsingFailed(e.getMessage());
                 }
                 presenter.response(getNextNews());
+
+                busy = false;
             }
 
             @Override
             public void onResponseFailure(Throwable t) {
                 presenter.responseFailed(t.getMessage());
+                busy = false;
             }
 
             @Override
             public void onParseFailure(JSONException e) {
                 presenter.jsonParsingFailed(e.getMessage());
+                busy = false;
             }
         });
     }
@@ -87,10 +95,13 @@ public class Model implements NewsModel {
 
     @Override
     public void requestNext() {
+        busy = true;
         if (news.size() == 0) {
             getNewsFromInternet();
         } else {
             this.presenter.response(getNextNews());
+
+            busy = false;
         }
     }
 
@@ -109,5 +120,10 @@ public class Model implements NewsModel {
     @Override
     public void clearDB() {
         db.clear();
+    }
+
+    @Override
+    public boolean isBusy() {
+        return busy;
     }
 }

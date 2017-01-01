@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements SingleNewsView, A
         startActivity(browserIntent);
     }
 
+
     @Override
     public Context getContext() {
         return this;

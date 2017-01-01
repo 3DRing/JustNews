@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.ringov.justnews.R;
 import com.ringov.justnews.model.NewsData;
@@ -47,6 +48,8 @@ public class JustNewsWidget extends AppWidgetProvider implements SingleNewsView,
 
         appWidgetManager.updateAppWidget(newsWidget, remoteViews);
     }
+
+    private Toast t;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -115,7 +118,21 @@ public class JustNewsWidget extends AppWidgetProvider implements SingleNewsView,
 
     @Override
     public void showMessage(String message) {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        RemoteViews remoteViews;
+        ComponentName newsWidget;
 
+        remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout_dark);
+        newsWidget = new ComponentName(context, JustNewsWidget.class);
+
+        remoteViews.setTextViewText(R.id.tvTitle, message);
+        remoteViews.setTextViewText(R.id.tvDescription, "");
+        remoteViews.setTextViewText(R.id.tvDate, "");
+        remoteViews.setTextViewText(R.id.tvSource, "");
+
+        appWidgetManager.updateAppWidget(newsWidget, remoteViews);
+
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
