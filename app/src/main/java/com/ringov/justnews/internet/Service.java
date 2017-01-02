@@ -1,7 +1,8 @@
 package com.ringov.justnews.internet;
 
 import com.ringov.justnews.internet.retrofit.RSSClient;
-import com.ringov.justnews.internet.retrofit.YandexClient;
+import com.ringov.justnews.internet.retrofit.lenta.LentaClient;
+import com.ringov.justnews.internet.retrofit.yandex.YandexClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,7 +38,7 @@ public class Service implements InternetService {
 
     private Service() {
 
-        client = new YandexClient();
+        client = new LentaClient();
 
         canceled = false;
     }
@@ -71,7 +72,7 @@ public class Service implements InternetService {
 
                 try{
                     JSONObject json = getJson(response);
-                    callback.onResponseSuccess(json,SOURCE.YANDEX);
+                    callback.onResponseSuccess(json, client);
                 } catch (JSONException e) {
                     callback.onParseFailure(e);
                 } catch (IOException ioe){
@@ -99,7 +100,7 @@ public class Service implements InternetService {
         } else {
             body = response.errorBody().string();
         }
-        JSONObject json = XML.toJSONObject(body);
+        JSONObject json = XML.toJSONObject(client.fixResponseString(body));
         return json;
     }
 }

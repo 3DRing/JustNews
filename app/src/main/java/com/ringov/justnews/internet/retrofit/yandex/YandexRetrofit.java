@@ -1,4 +1,4 @@
-package com.ringov.justnews.internet.retrofit;
+package com.ringov.justnews.internet.retrofit.yandex;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -10,5 +10,5 @@ import retrofit2.http.GET;
 
 public interface YandexRetrofit {
     @GET("index.rss")
-    Call<ResponseBody> getTestRss();
+    Call<ResponseBody> getRss();
 }

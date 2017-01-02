@@ -49,8 +49,6 @@ public class JustNewsWidget extends AppWidgetProvider implements SingleNewsView,
         appWidgetManager.updateAppWidget(newsWidget, remoteViews);
     }
 
-    private Toast t;
-
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
@@ -118,6 +116,8 @@ public class JustNewsWidget extends AppWidgetProvider implements SingleNewsView,
 
     @Override
     public void showMessage(String message) {
+        // TODO showing message in more fancy way
+
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         RemoteViews remoteViews;
         ComponentName newsWidget;

@@ -6,4 +6,6 @@ package com.ringov.justnews;
 
 public class SrcStr {
     public static final String YANDEX_URL = "https://news.yandex.ru/";
+
+    public static final String LENTA_URL = "https://lenta.ru/";
 }

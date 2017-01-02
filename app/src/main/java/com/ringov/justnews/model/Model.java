@@ -5,7 +5,7 @@ import com.ringov.justnews.db.DBManager;
 import com.ringov.justnews.internet.ClientCallback;
 import com.ringov.justnews.internet.InternetManager;
 import com.ringov.justnews.internet.InternetService;
-import com.ringov.justnews.internet.SOURCE;
+import com.ringov.justnews.internet.parsing.SourceParser;
 import com.ringov.justnews.presenter.PresenterInModel;
 
 import org.json.JSONException;
@@ -24,7 +24,6 @@ public class Model implements NewsModel {
     private DB db;
     private PresenterInModel<NewsData> presenter;
 
-    private Parser<News,SOURCE> parser;
     private List<News> news;
 
     private boolean busy;
@@ -34,23 +33,21 @@ public class Model implements NewsModel {
         this.service = InternetManager.getInternetService();
         this.db = DBManager.getDB(presenter.getContext());
 
-        this.parser = new NewsParser();
         this.news = new LinkedList<>();
 
         busy = false;
     }
 
     private void getNewsFromInternet() {
-        this.service.getData(new ClientCallback() {
+        this.service.getData(new ClientCallback<List<News>>() {
             @Override
-            public void onResponseSuccess(JSONObject json, SOURCE source) throws JSONException {
+            public void onResponseSuccess(JSONObject json, SourceParser<List<News>> parser) throws JSONException {
                 try {
-                    news = parser.parse(json, source);
-                } catch (NewsParseException e) {
+                    news = parser.parse(json);
+                    presenter.response(getNextNews());
+                } catch (ParseException e) {
                     presenter.newsParsingFailed(e.getMessage());
                 }
-                presenter.response(getNextNews());
-
                 busy = false;
             }
 

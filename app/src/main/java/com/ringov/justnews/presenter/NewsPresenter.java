@@ -35,7 +35,7 @@ public class NewsPresenter extends Presenter<SingleNewsView, NewsModel, NewsData
         if(data != null){
             this.view.showNews(data);
         }else{
-            this.view.showMessage("Нет новых новостей");
+            this.view.showMessage("Нет новых новостей"); // TODO remove hardtext
         }
     }
 
