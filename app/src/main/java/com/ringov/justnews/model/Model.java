@@ -4,7 +4,7 @@ import com.ringov.justnews.db.DB;
 import com.ringov.justnews.db.DBManager;
 import com.ringov.justnews.internet.ClientCallback;
 import com.ringov.justnews.internet.InternetManager;
-import com.ringov.justnews.internet.InternetService;
+import com.ringov.justnews.internet.InternetConnection;
 import com.ringov.justnews.internet.parsing.SourceParser;
 import com.ringov.justnews.presenter.PresenterInModel;
 
@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Model implements NewsModel {
 
-    private InternetService service;
+    private InternetConnection service;
     private DB db;
     private PresenterInModel<NewsData> presenter;
 

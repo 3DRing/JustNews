@@ -5,7 +5,7 @@ package com.ringov.justnews.internet;
  */
 
 public class InternetManager {
-    public static InternetService getInternetService(){
-        return Service.getInstance();
+    public static InternetConnection getInternetService(){
+        return Connection.getInstance();
     }
 }

@@ -2,7 +2,6 @@ package com.ringov.justnews.internet;
 
 import com.ringov.justnews.internet.retrofit.RSSClient;
 import com.ringov.justnews.internet.retrofit.lenta.LentaClient;
-import com.ringov.justnews.internet.retrofit.yandex.YandexClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,15 +18,15 @@ import retrofit2.Response;
  * Created by Сергей on 29.12.2016.
  */
 
-public class Service implements InternetService {
+public class Connection implements InternetConnection {
 
-    private static Service instance;
+    private static Connection instance;
 
-    public static Service getInstance() {
+    public static Connection getInstance() {
         if (instance != null) {
             return instance;
         } else {
-            instance = new Service();
+            instance = new Connection();
             return instance;
         }
     }
@@ -36,7 +35,7 @@ public class Service implements InternetService {
 
     private boolean canceled;
 
-    private Service() {
+    private Connection() {
 
         client = new LentaClient();
 
